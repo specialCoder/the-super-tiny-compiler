@@ -82,8 +82,10 @@ math         |LISP                       | C
   type: 'NumberLiteral',
   value: '2',
 }
+```
 
 或者我们有一个CallExpression节点：
+```js
 {
   type: 'CallExpression',
   name: 'subtract',
@@ -146,11 +148,12 @@ var visitor = {
 ```
 当我们遍历我们的AST语法树的时候，每当我们进入一个类型匹配的节点，我们将在访问者上调用这些类型方法。
 为了使这个有用，我们还将传递节点和对父节点的引用。
+```js
 var visitor = {
   NumberLiteral(node, parent) {},
   CallExpression(node, parent) {},
 };
-
+```
 但是，也存在在“exist”上调用方法的可能性。想象一下我们以前的列表形式的树结构：
 
 当我们遍历下去，发现无法结束。当我们完成对树上每个分支的访问后，我们“退出”它。因此，在我们“进入”每个节点之后，还要返回我们的“退出”信息。
